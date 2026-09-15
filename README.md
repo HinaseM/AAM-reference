@@ -54,7 +54,19 @@ Anchors are identified using `FindTransferAnchors` (SCTransform normalization), 
 - Mouse data: prediction score threshold > 0.7 (as used in the original study)
 - Human data (cross-species via homologous genes, Ensembl ID mapping through biomaRt): prediction score threshold > 0.3 (as used in the original study)
 
-This script outputs per-cell predictions
+## Running label transfer
+
+```bash
+Rscript label_transfer.R \
+  --query my_data.rds \
+  --reference scRNA_integrated.rds \
+  --query_dims 15 \
+  --threshold 0.7 \
+  --out predictions.csv
+```
+
+- `--query_dims`: **Required.** Number of PCs to use for the query's own dimensionality reduction. This should be determined independently for each dataset (e.g., using `ElbowPlot` on your own query object after `RunPCA`), consistent with the approach used in the original study.
+- `--threshold`: See "Note on thresholds". Default 0.7.
 
 **Note on thresholds**: These values were selected for the datasets analyzed in this study and are provided as defaults in the script. The optimal threshold may vary depending on the depth, quality, and biological similarity of a new dataset to this reference. Users are encouraged to inspect the distribution of prediction scores for their own data and adjust the threshold accordingly. We recommend reporting the threshold used when citing results derived from this reference.
 
@@ -62,3 +74,13 @@ This script outputs per-cell predictions
 
 The query object must already be **subset to microglia** before running this script. 
 For marker genes, see the Methods section of the associated manuscript for the approach used in this study (Tmem119, Aif1 positive; Hexb for excluding monocytes/macrophages) as a reference, but this step is left to the user's judgment for their own data.
+
+## After running the script
+
+This script outputs per-cell predictions only. Downstream analyses are left to the user's own experimental design, for example:
+
+- Quantifying the proportion of each predicted AAM state per sample/condition
+- Statistical comparison between conditions (e.g., GLMM as used in this study, see Methods)
+- Visualizing predicted states in UMAP space or as stacked bar plots
+
+Cells labeled "unpredicted" (prediction score below threshold) should generally be excluded from downstream quantification, or reported separately.
