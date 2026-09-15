@@ -58,9 +58,5 @@ Anchors are identified using `FindTransferAnchors` (SCTransform normalization), 
 
 ### Input requirements
 
-The query object must already be **subset to microglia** before running this 
-script. Marker genes and thresholds for microglia extraction may vary by tissue, 
-age, and platform; see the Methods section of the associated manuscript for the 
-approach used in this study (Tmem119, Aif1 positive; Hexb for excluding 
-monocytes/macrophages) as a reference, but this step is left to the user's 
-judgment for their own data.
+The query object must already be **subset to microglia** before running this script. 
+For marker genes, see the Methods section of the associated manuscript for the approach used in this study (Tmem119, Aif1 positive; Hexb for excluding monocytes/macrophages) as a reference, but this step is left to the user's judgment for their own data.
