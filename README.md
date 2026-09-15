@@ -54,6 +54,8 @@ Anchors are identified using `FindTransferAnchors` (SCTransform normalization), 
 - Mouse data: prediction score threshold > 0.7 (as used in the original study)
 - Human data (cross-species via homologous genes, Ensembl ID mapping through biomaRt): prediction score threshold > 0.3 (as used in the original study)
 
+This script outputs per-cell predictions
+
 **Note on thresholds**: These values were selected for the datasets analyzed in this study and are provided as defaults in the script. The optimal threshold may vary depending on the depth, quality, and biological similarity of a new dataset to this reference. Users are encouraged to inspect the distribution of prediction scores for their own data and adjust the threshold accordingly. We recommend reporting the threshold used when citing results derived from this reference.
 
 ### Input requirements
