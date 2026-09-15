@@ -47,7 +47,7 @@ See Supplementary table of the paper for the full list of source datasets.
 
 *LATER*
 
-## Label transfer (projecting new data)
+## Label transfer 
 
 Anchors are identified using `FindTransferAnchors` (SCTransform normalization), and predictions are made with `TransferData`. Cells are annotated to a cluster if the prediction score exceeds the threshold; otherwise labeled "unpredicted".
 
@@ -55,3 +55,12 @@ Anchors are identified using `FindTransferAnchors` (SCTransform normalization), 
 - Human data (cross-species via homologous genes, Ensembl ID mapping through biomaRt): prediction score threshold > 0.3 (as used in the original study)
 
 **Note on thresholds**: These values were selected for the datasets analyzed in this study and are provided as defaults in the script. The optimal threshold may vary depending on the depth, quality, and biological similarity of a new dataset to this reference. Users are encouraged to inspect the distribution of prediction scores for their own data and adjust the threshold accordingly. We recommend reporting the threshold used when citing results derived from this reference.
+
+### Input requirements
+
+The query object must already be **subset to microglia** before running this 
+script. Marker genes and thresholds for microglia extraction may vary by tissue, 
+age, and platform; see the Methods section of the associated manuscript for the 
+approach used in this study (Tmem119, Aif1 positive; Hexb for excluding 
+monocytes/macrophages) as a reference, but this step is left to the user's 
+judgment for their own data.
